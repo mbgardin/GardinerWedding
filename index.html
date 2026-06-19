@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,26 +10,28 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ──────────────────────────────────────────────
        DESIGN TOKENS — Flowery Blue Cascade
     ────────────────────────────────────────────── */
     :root {
-      --sky:        hsl(208, 80%, 92%);
-      --sky-mid:    hsl(210, 65%, 85%);
+      --sky: hsl(208, 80%, 92%);
+      --sky-mid: hsl(210, 65%, 85%);
       --periwinkle: hsl(222, 55%, 72%);
       --cornflower: hsl(218, 55%, 62%);
-      --deep-blue:  hsl(220, 45%, 42%);
-      --mist:       hsl(200, 40%, 97%);
-      --white:      #ffffff;
-      --text-dark:  hsl(220, 30%, 28%);
-      --text-mid:   hsl(220, 25%, 50%);
-      --sage:       hsl(145, 25%, 62%);
+      --deep-blue: hsl(220, 45%, 42%);
+      --mist: hsl(200, 40%, 97%);
+      --white: #ffffff;
+      --text-dark: hsl(220, 30%, 28%);
+      --text-mid: hsl(220, 25%, 50%);
+      --sage: hsl(145, 25%, 62%);
 
       --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans:  'Jost', system-ui, sans-serif;
+      --font-sans: 'Jost', system-ui, sans-serif;
 
       --radius-pill: 60px;
       --radius-card: 20px;
@@ -39,7 +42,13 @@
     /* ──────────────────────────────────────────────
        RESET & BASE
     ────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -52,11 +61,11 @@
       background: var(--mist);
       background-image:
         /* scattered petal blobs */
-        radial-gradient(ellipse 420px 260px at 10% 15%,  hsla(210,70%,88%,0.55) 0%, transparent 70%),
-        radial-gradient(ellipse 300px 400px at 88% 5%,   hsla(220,60%,86%,0.45) 0%, transparent 65%),
-        radial-gradient(ellipse 500px 300px at 55% 100%, hsla(200,65%,90%,0.50) 0%, transparent 70%),
-        radial-gradient(ellipse 250px 250px at 0%  80%,  hsla(230,55%,85%,0.35) 0%, transparent 60%),
-        radial-gradient(ellipse 180px 180px at 95% 70%,  hsla(215,70%,88%,0.40) 0%, transparent 60%);
+        radial-gradient(ellipse 420px 260px at 10% 15%, hsla(210, 70%, 88%, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 400px at 88% 5%, hsla(220, 60%, 86%, 0.45) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 300px at 55% 100%, hsla(200, 65%, 90%, 0.50) 0%, transparent 70%),
+        radial-gradient(ellipse 250px 250px at 0% 80%, hsla(230, 55%, 85%, 0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 180px 180px at 95% 70%, hsla(215, 70%, 88%, 0.40) 0%, transparent 60%);
       overflow-x: hidden;
     }
 
@@ -81,28 +90,130 @@
     }
 
     @keyframes fall {
-      0%   { transform: translateY(-60px) rotate(0deg);   opacity: 0; }
-      5%   { opacity: 0.65; }
-      90%  { opacity: 0.4; }
-      100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+      0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 0.65;
+      }
+
+      90% {
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: translateY(105vh) rotate(540deg);
+        opacity: 0;
+      }
     }
 
     /* Individual petal positions + timing */
-    .petal:nth-child(1)  { left:  5%; animation-duration: 12s; animation-delay: 0s;   font-size: 0.9rem; }
-    .petal:nth-child(2)  { left: 15%; animation-duration:  9s; animation-delay: 1.5s; font-size: 1.3rem; }
-    .petal:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 0.8s; font-size: 0.8rem; }
-    .petal:nth-child(4)  { left: 38%; animation-duration: 11s; animation-delay: 3s;   font-size: 1.1rem; }
-    .petal:nth-child(5)  { left: 48%; animation-duration: 13s; animation-delay: 0.3s; font-size: 0.75rem;}
-    .petal:nth-child(6)  { left: 58%; animation-duration:  8s; animation-delay: 2.2s; font-size: 1.2rem; }
-    .petal:nth-child(7)  { left: 67%; animation-duration: 15s; animation-delay: 0.9s; font-size: 0.85rem;}
-    .petal:nth-child(8)  { left: 75%; animation-duration: 10s; animation-delay: 4s;   font-size: 1.0rem; }
-    .petal:nth-child(9)  { left: 84%; animation-duration: 12s; animation-delay: 1.2s; font-size: 0.9rem; }
-    .petal:nth-child(10) { left: 93%; animation-duration:  9s; animation-delay: 2.8s; font-size: 1.3rem; }
-    .petal:nth-child(11) { left: 10%; animation-duration: 16s; animation-delay: 5s;   font-size: 0.7rem; }
-    .petal:nth-child(12) { left: 45%; animation-duration: 11s; animation-delay: 6s;   font-size: 1.0rem; }
-    .petal:nth-child(13) { left: 72%; animation-duration: 13s; animation-delay: 3.5s; font-size: 0.8rem; }
-    .petal:nth-child(14) { left: 30%; animation-duration: 10s; animation-delay: 7s;   font-size: 1.1rem; }
-    .petal:nth-child(15) { left: 89%; animation-duration: 14s; animation-delay: 2s;   font-size: 0.85rem;}
+    .petal:nth-child(1) {
+      left: 5%;
+      animation-duration: 12s;
+      animation-delay: 0s;
+      font-size: 0.9rem;
+    }
+
+    .petal:nth-child(2) {
+      left: 15%;
+      animation-duration: 9s;
+      animation-delay: 1.5s;
+      font-size: 1.3rem;
+    }
+
+    .petal:nth-child(3) {
+      left: 25%;
+      animation-duration: 14s;
+      animation-delay: 0.8s;
+      font-size: 0.8rem;
+    }
+
+    .petal:nth-child(4) {
+      left: 38%;
+      animation-duration: 11s;
+      animation-delay: 3s;
+      font-size: 1.1rem;
+    }
+
+    .petal:nth-child(5) {
+      left: 48%;
+      animation-duration: 13s;
+      animation-delay: 0.3s;
+      font-size: 0.75rem;
+    }
+
+    .petal:nth-child(6) {
+      left: 58%;
+      animation-duration: 8s;
+      animation-delay: 2.2s;
+      font-size: 1.2rem;
+    }
+
+    .petal:nth-child(7) {
+      left: 67%;
+      animation-duration: 15s;
+      animation-delay: 0.9s;
+      font-size: 0.85rem;
+    }
+
+    .petal:nth-child(8) {
+      left: 75%;
+      animation-duration: 10s;
+      animation-delay: 4s;
+      font-size: 1.0rem;
+    }
+
+    .petal:nth-child(9) {
+      left: 84%;
+      animation-duration: 12s;
+      animation-delay: 1.2s;
+      font-size: 0.9rem;
+    }
+
+    .petal:nth-child(10) {
+      left: 93%;
+      animation-duration: 9s;
+      animation-delay: 2.8s;
+      font-size: 1.3rem;
+    }
+
+    .petal:nth-child(11) {
+      left: 10%;
+      animation-duration: 16s;
+      animation-delay: 5s;
+      font-size: 0.7rem;
+    }
+
+    .petal:nth-child(12) {
+      left: 45%;
+      animation-duration: 11s;
+      animation-delay: 6s;
+      font-size: 1.0rem;
+    }
+
+    .petal:nth-child(13) {
+      left: 72%;
+      animation-duration: 13s;
+      animation-delay: 3.5s;
+      font-size: 0.8rem;
+    }
+
+    .petal:nth-child(14) {
+      left: 30%;
+      animation-duration: 10s;
+      animation-delay: 7s;
+      font-size: 1.1rem;
+    }
+
+    .petal:nth-child(15) {
+      left: 89%;
+      animation-duration: 14s;
+      animation-delay: 2s;
+      font-size: 0.85rem;
+    }
 
     /* ──────────────────────────────────────────────
        LAYOUT
@@ -127,8 +238,15 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero__bouquet {
@@ -144,8 +262,15 @@
     }
 
     @keyframes floatBouquet {
-      0%, 100% { transform: translateY(0);    }
-      50%       { transform: translateY(-8px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     .hero__eyebrow {
@@ -228,10 +353,10 @@
       text-decoration: none;
       color: var(--text-dark);
       transition:
-        transform      0.22s cubic-bezier(0.34,1.56,0.64,1),
-        box-shadow     0.22s ease,
-        border-color   0.22s ease,
-        background     0.22s ease;
+        transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
       cursor: pointer;
     }
 
@@ -339,15 +464,21 @@
        RESPONSIVE TWEAKS
     ────────────────────────────────────────────── */
     @media (max-width: 480px) {
-      .hero__bouquet { width: 160px; height: 160px; }
-      .link-card { padding: 0.9rem 1.1rem; }
+      .hero__bouquet {
+        width: 160px;
+        height: 160px;
+      }
+
+      .link-card {
+        padding: 0.9rem 1.1rem;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Floating petal rain -->
+  <!-- Floating petal rain
   <div class="petal-layer" aria-hidden="true">
     <span class="petal">🌸</span>
     <span class="petal">🌼</span>
@@ -364,19 +495,13 @@
     <span class="petal">🌼</span>
     <span class="petal">💠</span>
     <span class="petal">🌸</span>
-  </div>
+  </div> -->
 
   <main class="page">
 
     <!-- ── HERO ── -->
     <header class="hero">
-      <img
-        class="hero__bouquet"
-        src="bouquet.png"
-        alt="Watercolor blue hydrangea bouquet"
-        width="200"
-        height="200"
-      />
+      <img class="hero__bouquet" src="bouquet.png" alt="Watercolor blue hydrangea bouquet" width="200" height="200" />
       <p class="hero__eyebrow">We're getting married 💙</p>
       <h1 class="hero__title">The <em>Gardiner</em><br>Wedding</h1>
       <p class="hero__date">Summer 2026 &nbsp;·&nbsp; With Love</p>
@@ -388,12 +513,8 @@
 
     <nav class="links" aria-label="Wedding links and registries">
 
-      <a id="link-amazon"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Amazon Registry">
+      <a id="link-amazon" class="link-card" href="#" target="_blank" rel="noopener noreferrer"
+        aria-label="Amazon Registry">
         <div class="link-card__icon">🎁</div>
         <div class="link-card__text">
           <div class="link-card__name">Amazon Registry</div>
@@ -402,12 +523,8 @@
         <span class="link-card__arrow">→</span>
       </a>
 
-      <a id="link-target"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Target Registry">
+      <a id="link-target" class="link-card" href="#" target="_blank" rel="noopener noreferrer"
+        aria-label="Target Registry">
         <div class="link-card__icon">🏡</div>
         <div class="link-card__text">
           <div class="link-card__name">Target Registry</div>
@@ -416,12 +533,8 @@
         <span class="link-card__arrow">→</span>
       </a>
 
-      <a id="link-crate"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Crate & Barrel Registry">
+      <a id="link-crate" class="link-card" href="#" target="_blank" rel="noopener noreferrer"
+        aria-label="Crate & Barrel Registry">
         <div class="link-card__icon">🍽️</div>
         <div class="link-card__text">
           <div class="link-card__name">Crate &amp; Barrel</div>
@@ -432,12 +545,7 @@
 
       <div class="flower-divider" aria-hidden="true">🌸 ✦ 🌸</div>
 
-      <a id="link-rsvp"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="RSVP">
+      <a id="link-rsvp" class="link-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="RSVP">
         <div class="link-card__icon">💌</div>
         <div class="link-card__text">
           <div class="link-card__name">RSVP</div>
@@ -446,12 +554,8 @@
         <span class="link-card__arrow">→</span>
       </a>
 
-      <a id="link-website"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Our Wedding Website">
+      <a id="link-website" class="link-card" href="#" target="_blank" rel="noopener noreferrer"
+        aria-label="Our Wedding Website">
         <div class="link-card__icon">🌐</div>
         <div class="link-card__text">
           <div class="link-card__name">Wedding Website</div>
@@ -460,12 +564,8 @@
         <span class="link-card__arrow">→</span>
       </a>
 
-      <a id="link-photos"
-         class="link-card"
-         href="#"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Share Photos">
+      <a id="link-photos" class="link-card" href="#" target="_blank" rel="noopener noreferrer"
+        aria-label="Share Photos">
         <div class="link-card__icon">📷</div>
         <div class="link-card__text">
           <div class="link-card__name">Share Photos</div>
@@ -485,4 +585,5 @@
   </main>
 
 </body>
+
 </html>
