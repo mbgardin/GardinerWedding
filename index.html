@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gardiner Wedding 💙</title>
+  <meta name="description" content="Welcome to the Gardiner Wedding! Find our registries, RSVP, and more right here." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ──────────────────────────────────────────────
+       DESIGN TOKENS — Flowery Blue Cascade
+    ────────────────────────────────────────────── */
+    :root {
+      --sky:        hsl(208, 80%, 92%);
+      --sky-mid:    hsl(210, 65%, 85%);
+      --periwinkle: hsl(222, 55%, 72%);
+      --cornflower: hsl(218, 55%, 62%);
+      --deep-blue:  hsl(220, 45%, 42%);
+      --mist:       hsl(200, 40%, 97%);
+      --white:      #ffffff;
+      --text-dark:  hsl(220, 30%, 28%);
+      --text-mid:   hsl(220, 25%, 50%);
+      --sage:       hsl(145, 25%, 62%);
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Jost', system-ui, sans-serif;
+
+      --radius-pill: 60px;
+      --radius-card: 20px;
+      --shadow-soft: 0 8px 32px hsla(220, 60%, 50%, 0.12);
+      --shadow-hover: 0 14px 48px hsla(220, 60%, 45%, 0.22);
+    }
+
+    /* ──────────────────────────────────────────────
+       RESET & BASE
+    ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text-dark);
+      background: var(--mist);
+      background-image:
+        /* scattered petal blobs */
+        radial-gradient(ellipse 420px 260px at 10% 15%,  hsla(210,70%,88%,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 400px at 88% 5%,   hsla(220,60%,86%,0.45) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 300px at 55% 100%, hsla(200,65%,90%,0.50) 0%, transparent 70%),
+        radial-gradient(ellipse 250px 250px at 0%  80%,  hsla(230,55%,85%,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 180px 180px at 95% 70%,  hsla(215,70%,88%,0.40) 0%, transparent 60%);
+      overflow-x: hidden;
+    }
+
+    /* ──────────────────────────────────────────────
+       PETAL RAIN ANIMATION (purely CSS SVG chars)
+    ────────────────────────────────────────────── */
+    .petal-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -60px;
+      font-size: 1.1rem;
+      animation: fall linear infinite;
+      opacity: 0;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(-60px) rotate(0deg);   opacity: 0; }
+      5%   { opacity: 0.65; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+    }
+
+    /* Individual petal positions + timing */
+    .petal:nth-child(1)  { left:  5%; animation-duration: 12s; animation-delay: 0s;   font-size: 0.9rem; }
+    .petal:nth-child(2)  { left: 15%; animation-duration:  9s; animation-delay: 1.5s; font-size: 1.3rem; }
+    .petal:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 0.8s; font-size: 0.8rem; }
+    .petal:nth-child(4)  { left: 38%; animation-duration: 11s; animation-delay: 3s;   font-size: 1.1rem; }
+    .petal:nth-child(5)  { left: 48%; animation-duration: 13s; animation-delay: 0.3s; font-size: 0.75rem;}
+    .petal:nth-child(6)  { left: 58%; animation-duration:  8s; animation-delay: 2.2s; font-size: 1.2rem; }
+    .petal:nth-child(7)  { left: 67%; animation-duration: 15s; animation-delay: 0.9s; font-size: 0.85rem;}
+    .petal:nth-child(8)  { left: 75%; animation-duration: 10s; animation-delay: 4s;   font-size: 1.0rem; }
+    .petal:nth-child(9)  { left: 84%; animation-duration: 12s; animation-delay: 1.2s; font-size: 0.9rem; }
+    .petal:nth-child(10) { left: 93%; animation-duration:  9s; animation-delay: 2.8s; font-size: 1.3rem; }
+    .petal:nth-child(11) { left: 10%; animation-duration: 16s; animation-delay: 5s;   font-size: 0.7rem; }
+    .petal:nth-child(12) { left: 45%; animation-duration: 11s; animation-delay: 6s;   font-size: 1.0rem; }
+    .petal:nth-child(13) { left: 72%; animation-duration: 13s; animation-delay: 3.5s; font-size: 0.8rem; }
+    .petal:nth-child(14) { left: 30%; animation-duration: 10s; animation-delay: 7s;   font-size: 1.1rem; }
+    .petal:nth-child(15) { left: 89%; animation-duration: 14s; animation-delay: 2s;   font-size: 0.85rem;}
+
+    /* ──────────────────────────────────────────────
+       LAYOUT
+    ────────────────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem 5rem;
+      min-height: 100vh;
+    }
+
+    /* ──────────────────────────────────────────────
+       HERO / HEADER
+    ────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.4rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__bouquet {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 3px solid hsla(210, 70%, 80%, 0.6);
+      box-shadow: 0 0 0 8px hsla(210, 70%, 85%, 0.3), var(--shadow-soft);
+      background: var(--white);
+      margin-bottom: 1.6rem;
+      animation: floatBouquet 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBouquet {
+      0%, 100% { transform: translateY(0);    }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero__eyebrow {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      margin-bottom: 0.55rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      line-height: 1.05;
+      color: var(--deep-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--periwinkle);
+    }
+
+    .hero__date {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      letter-spacing: 0.06em;
+    }
+
+    .hero__divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--periwinkle), transparent);
+      margin: 1.2rem auto 0;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION LABEL
+    ────────────────────────────────────────────── */
+    .section-label {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--periwinkle);
+      margin-bottom: 1rem;
+      text-align: center;
+      animation: fadeUp 0.9s ease 0.3s both;
+    }
+
+    /* ──────────────────────────────────────────────
+       LINK CARDS
+    ────────────────────────────────────────────── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeUp 0.9s ease 0.45s both;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+      border-radius: var(--radius-pill);
+      background: hsla(255, 100%, 100%, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid hsla(210, 65%, 82%, 0.70);
+      box-shadow: var(--shadow-soft);
+      text-decoration: none;
+      color: var(--text-dark);
+      transition:
+        transform      0.22s cubic-bezier(0.34,1.56,0.64,1),
+        box-shadow     0.22s ease,
+        border-color   0.22s ease,
+        background     0.22s ease;
+      cursor: pointer;
+    }
+
+    .link-card:hover,
+    .link-card:focus-visible {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: var(--shadow-hover);
+      border-color: hsla(218, 65%, 68%, 0.9);
+      background: hsla(255, 100%, 100%, 0.92);
+      outline: none;
+    }
+
+    .link-card:active {
+      transform: translateY(-1px) scale(1.005);
+    }
+
+    /* Icon bubble */
+    .link-card__icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky), var(--sky-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 3px 10px hsla(210, 70%, 60%, 0.20);
+      transition: transform 0.22s ease;
+    }
+
+    .link-card:hover .link-card__icon {
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .link-card__text {
+      flex: 1;
+    }
+
+    .link-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--deep-blue);
+      line-height: 1.2;
+    }
+
+    .link-card__desc {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      margin-top: 0.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .link-card__arrow {
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--periwinkle);
+      transition: transform 0.2s ease;
+    }
+
+    .link-card:hover .link-card__arrow {
+      transform: translateX(4px);
+    }
+
+    /* ──────────────────────────────────────────────
+       DIVIDER WITH FLOWERS
+    ────────────────────────────────────────────── */
+    .flower-divider {
+      text-align: center;
+      margin: 1.6rem 0 1rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.4rem;
+      color: hsla(218, 55%, 72%, 0.75);
+      animation: fadeUp 0.9s ease 0.6s both;
+    }
+
+    /* ──────────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────────── */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      animation: fadeUp 0.9s ease 0.9s both;
+    }
+
+    .footer__love {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.0rem;
+      color: var(--periwinkle);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer__copy {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: hsla(220, 25%, 65%, 0.75);
+      letter-spacing: 0.05em;
+    }
+
+    /* ──────────────────────────────────────────────
+       RESPONSIVE TWEAKS
+    ────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .hero__bouquet { width: 160px; height: 160px; }
+      .link-card { padding: 0.9rem 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating petal rain -->
+  <div class="petal-layer" aria-hidden="true">
+    <span class="petal">🌸</span>
+    <span class="petal">🌼</span>
+    <span class="petal">💠</span>
+    <span class="petal">🌸</span>
+    <span class="petal">❄️</span>
+    <span class="petal">🌸</span>
+    <span class="petal">🌼</span>
+    <span class="petal">💠</span>
+    <span class="petal">🌸</span>
+    <span class="petal">🌼</span>
+    <span class="petal">💠</span>
+    <span class="petal">🌸</span>
+    <span class="petal">🌼</span>
+    <span class="petal">💠</span>
+    <span class="petal">🌸</span>
+  </div>
+
+  <main class="page">
+
+    <!-- ── HERO ── -->
+    <header class="hero">
+      <img
+        class="hero__bouquet"
+        src="bouquet.png"
+        alt="Watercolor blue hydrangea bouquet"
+        width="200"
+        height="200"
+      />
+      <p class="hero__eyebrow">We're getting married 💙</p>
+      <h1 class="hero__title">The <em>Gardiner</em><br>Wedding</h1>
+      <p class="hero__date">Summer 2026 &nbsp;·&nbsp; With Love</p>
+      <div class="hero__divider"></div>
+    </header>
+
+    <!-- ── REGISTRY LINKS ── -->
+    <p class="section-label">✦ Our Registries &amp; Links ✦</p>
+
+    <nav class="links" aria-label="Wedding links and registries">
+
+      <a id="link-amazon"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Amazon Registry">
+        <div class="link-card__icon">🎁</div>
+        <div class="link-card__text">
+          <div class="link-card__name">Amazon Registry</div>
+          <div class="link-card__desc">Browse our wishlist on Amazon</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+      <a id="link-target"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Target Registry">
+        <div class="link-card__icon">🏡</div>
+        <div class="link-card__text">
+          <div class="link-card__name">Target Registry</div>
+          <div class="link-card__desc">Home goods &amp; everyday essentials</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+      <a id="link-crate"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Crate & Barrel Registry">
+        <div class="link-card__icon">🍽️</div>
+        <div class="link-card__text">
+          <div class="link-card__name">Crate &amp; Barrel</div>
+          <div class="link-card__desc">Kitchen &amp; dining registry</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+      <div class="flower-divider" aria-hidden="true">🌸 ✦ 🌸</div>
+
+      <a id="link-rsvp"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="RSVP">
+        <div class="link-card__icon">💌</div>
+        <div class="link-card__text">
+          <div class="link-card__name">RSVP</div>
+          <div class="link-card__desc">Let us know you're coming!</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+      <a id="link-website"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Our Wedding Website">
+        <div class="link-card__icon">🌐</div>
+        <div class="link-card__text">
+          <div class="link-card__name">Wedding Website</div>
+          <div class="link-card__desc">Schedule, travel, &amp; FAQs</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+      <a id="link-photos"
+         class="link-card"
+         href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Share Photos">
+        <div class="link-card__icon">📷</div>
+        <div class="link-card__text">
+          <div class="link-card__name">Share Photos</div>
+          <div class="link-card__desc">Upload your pics from the day</div>
+        </div>
+        <span class="link-card__arrow">→</span>
+      </a>
+
+    </nav>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+      <p class="footer__love">"And they lived happily ever after…"</p>
+      <p class="footer__copy">Made with 💙 for the Gardiner Wedding · 2026</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
