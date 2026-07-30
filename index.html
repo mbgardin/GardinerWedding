@@ -426,6 +426,116 @@
     }
 
     /* ──────────────────────────────────────────────
+       ADDRESS CARD
+    ────────────────────────────────────────────── */
+    .address-card {
+      padding: 1.1rem 1.4rem;
+      border-radius: var(--radius-card);
+      background: hsla(255, 100%, 100%, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid hsla(210, 65%, 82%, 0.70);
+      box-shadow: var(--shadow-soft);
+      margin-top: 0.3rem;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .address-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: hsla(218, 65%, 68%, 0.9);
+    }
+
+    .address-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .address-card__title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .address-card__icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky), var(--sky-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 3px 10px hsla(210, 70%, 60%, 0.20);
+    }
+
+    .address-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--deep-blue);
+      line-height: 1.2;
+    }
+
+    .address-card__subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.73rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      margin-top: 0.1rem;
+    }
+
+    .address-card__copy-btn {
+      background: linear-gradient(135deg, hsla(210, 70%, 94%, 0.9), hsla(220, 55%, 88%, 0.9));
+      border: 1px solid hsla(218, 55%, 72%, 0.6);
+      border-radius: 20px;
+      padding: 0.35rem 0.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--deep-blue);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .address-card__copy-btn:hover {
+      background: var(--deep-blue);
+      color: var(--white);
+      border-color: var(--deep-blue);
+      transform: translateY(-1px);
+    }
+
+    .address-card__body {
+      background: hsla(210, 45%, 97%, 0.85);
+      border: 1px dashed hsla(218, 55%, 72%, 0.5);
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    .address-card__line1 {
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .address-card__line2 {
+      display: block;
+      padding-left: 1.6rem;
+      font-weight: 500;
+      color: var(--deep-blue);
+      letter-spacing: 0.03em;
+    }
+
+    /* ──────────────────────────────────────────────
        DIVIDER WITH FLOWERS
     ────────────────────────────────────────────── */
     .flower-divider {
@@ -540,6 +650,27 @@
         <span class="link-card__arrow">→</span>
       </a>
 
+      <!-- Mailing Address Card -->
+      <div class="address-card" id="mailing-address">
+        <div class="address-card__header">
+          <div class="address-card__title-group">
+            <div class="address-card__icon" aria-hidden="true">📬</div>
+            <div>
+              <div class="address-card__title">Mailing Address</div>
+              <div class="address-card__subtitle">For cards & physical gifts</div>
+            </div>
+          </div>
+          <button class="address-card__copy-btn" id="copy-address-btn" onclick="copyAddress()"
+            aria-label="Copy mailing address">
+            <span>📋</span> <span id="copy-btn-text">Copy</span>
+          </button>
+        </div>
+        <div class="address-card__body">
+          <span class="address-card__line1">1317 N 1560 E Apt # G207</span>
+          <span class="address-card__line2">Spanish Fork, Ut 84660</span>
+        </div>
+      </div>
+
       <div class="flower-divider" aria-hidden="true">✦ Useful Links ✦</div>
 
       <a id="link-website" class="link-card"
@@ -570,6 +701,23 @@
     </footer>
 
   </main>
+
+  <script>
+    function copyAddress() {
+      const addressText = "1317 N 1560 E Apt # G207\nSpanish Fork, Ut 84660";
+      navigator.clipboard.writeText(addressText).then(() => {
+        const btnText = document.getElementById('copy-btn-text');
+        if (btnText) {
+          btnText.textContent = 'Copied!';
+          setTimeout(() => {
+            btnText.textContent = 'Copy';
+          }, 2000);
+        }
+      }).catch(err => {
+        console.error('Failed to copy address: ', err);
+      });
+    }
+  </script>
 
 </body>
 
