@@ -367,6 +367,11 @@
       color: hsl(355, 75%, 45%);
     }
 
+    .link-card__icon--rsvp {
+      background: linear-gradient(135deg, hsl(340, 70%, 93%), hsl(340, 60%, 84%));
+      color: hsl(340, 75%, 42%);
+    }
+
     .link-card:hover .link-card__icon {
       transform: rotate(-6deg) scale(1.08);
     }
@@ -547,6 +552,34 @@
     }
 
     /* ──────────────────────────────────────────────
+       RSVP HIGHLIGHT BADGE
+    ────────────────────────────────────────────── */
+    .section-badge--rsvp {
+      position: relative;
+    }
+
+    .section-badge--rsvp::after {
+      content: 'Please respond by Nov 7th';
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      color: var(--text-mid);
+      margin-top: 0.25rem;
+    }
+
+    @keyframes rsvp-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 hsla(340, 70%, 60%, 0.0); }
+      50%       { box-shadow: 0 0 0 6px hsla(340, 70%, 60%, 0.18); }
+    }
+
+    #link-rsvp {
+      animation: rsvp-pulse 2.8s ease-in-out infinite;
+    }
+
+    /* ──────────────────────────────────────────────
        FOOTER
     ────────────────────────────────────────────── */
     .footer {
@@ -641,6 +674,27 @@
         <div class="hero__divider-line"></div>
       </div>
     </header>
+
+    <!-- ── RSVP SECTION ── -->
+    <div class="section-badge section-badge--rsvp" style="flex-direction:column;align-items:center;text-align:center;">
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <span class="section-badge__sparkle">✧</span>
+        <span>RSVP</span>
+        <span class="section-badge__sparkle">✧</span>
+      </div>
+    </div>
+
+    <div class="links-stack" style="margin-bottom:1.8rem;">
+      <a id="link-rsvp" class="link-card" href="https://forms.gle/xEp7FeNjD43psN9W7" target="_blank"
+        rel="noopener noreferrer" aria-label="RSVP for the Arizona Reception">
+        <div class="link-card__icon link-card__icon--rsvp" aria-hidden="true">💌</div>
+        <div class="link-card__text">
+          <div class="link-card__name">RSVP Here</div>
+          <div class="link-card__desc">Let us know you're coming · Please respond by Nov 7th</div>
+        </div>
+        <div class="link-card__arrow" aria-hidden="true">→</div>
+      </a>
+    </div>
 
     <!-- ── SECTION LABEL ── -->
     <div class="section-badge" aria-hidden="true">
